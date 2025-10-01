@@ -10,69 +10,124 @@ const stopBtn = document.querySelector('button[data-action-stop]');
 const clockface = document.querySelector('.clockface');
 // console.log(clockface);
 
-class Timer {
-  constructor({ onTick }) {
-    this.onTick = onTick;
-    this.isActive = false;
-    this.intervalId = null;
+// class Timer {
+//   constructor({ onTick }) {
+//     this.onTick = onTick;
+//     this.isActive = false;
+//     this.intervalId = null;
 
-    this.init();
+//     this.init();
+//   }
+
+//   init() {
+//     const time = this.getTimeComponents(0);
+//     this.onTick(time);
+//   }
+
+//   start() {
+//     if (this.isActive) {
+//       return;
+//     }
+
+//     this.isActive = true;
+
+//     const startTime = Date.now();
+
+//     this.intervalId = setInterval(() => {
+//       const currentTime = Date.now();
+//       const deltaTime = currentTime - startTime;
+//       // console.log('deltaTime:', deltaTime);
+//       const time = this.getTimeComponents(deltaTime);
+
+//       this.onTick(time);
+//       // console.log('time:', time);
+//     }, 1000);
+//   }
+
+//   stop() {
+//     clearInterval(this.intervalId);
+//     this.init();
+//     this.isActive = false;
+//   }
+
+//   getTimeComponents(time) {
+//     const hours = this.pad(
+//       Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+//     );
+//     const minutes = this.pad(
+//       Math.floor((time % (1000 * 60 * 60)) / (1000 * 60))
+//     );
+//     const seconds = this.pad(Math.floor((time % (1000 * 60)) / 1000));
+
+//     return { hours, minutes, seconds };
+//   }
+
+//   pad(value) {
+//     return String(value).padStart(2, '0');
+//   }
+// }
+
+// const timer = new Timer({ onTick: updateClockface });
+// // console.log('timer:', timer);
+
+// startBtn.addEventListener('click', timer.start.bind(timer));
+// stopBtn.addEventListener('click', timer.stop.bind(timer));
+
+// function updateClockface({ hours, minutes, seconds }) {
+//   clockface.textContent = `${hours}:${minutes}:${seconds}`;
+// }
+
+let isActive = false;
+let intervalId = null;
+
+startBtn.addEventListener('click', start);
+stopBtn.addEventListener('click', stop);
+
+init();
+
+function start() {
+  if (isActive) {
+    return;
   }
 
-  init() {
-    const time = this.getTimeComponents(0);
-    this.onTick(time);
-  }
+  isActive = true;
 
-  start() {
-    if (this.isActive) {
-      return;
-    }
+  const startTime = Date.now();
 
-    this.isActive = true;
+  intervalId = setInterval(() => {
+    const currentTime = Date.now();
+    const deltaTime = currentTime - startTime;
+    const time = getTimeComponents(deltaTime);
 
-    const startTime = Date.now();
-
-    this.intervalId = setInterval(() => {
-      const currentTime = Date.now();
-      const deltaTime = currentTime - startTime;
-      // console.log('deltaTime:', deltaTime);
-      const time = this.getTimeComponents(deltaTime);
-
-      this.onTick(time);
-      // console.log('time:', time);
-    }, 1000);
-  }
-
-  stop() {
-    clearInterval(this.intervalId);
-    this.init();
-    this.isActive = false;
-  }
-
-  getTimeComponents(time) {
-    const hours = this.pad(
-      Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-    );
-    const minutes = this.pad(
-      Math.floor((time % (1000 * 60 * 60)) / (1000 * 60))
-    );
-    const seconds = this.pad(Math.floor((time % (1000 * 60)) / 1000));
-
-    return { hours, minutes, seconds };
-  }
-
-  pad(value) {
-    return String(value).padStart(2, '0');
-  }
+    onTick(time);
+  }, 1000);
 }
 
-const timer = new Timer({ onTick: updateClockface });
-// console.log('timer:', timer);
+function getTimeComponents(time) {
+  const hours = pad(
+    Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+  );
+  const minutes = pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+  const seconds = pad(Math.floor((time % (1000 * 60)) / 1000));
 
-startBtn.addEventListener('click', timer.start.bind(timer));
-stopBtn.addEventListener('click', timer.stop.bind(timer));
+  return { hours, minutes, seconds };
+}
 
-function updateClockface({ hours, minutes, seconds }) {
+function pad(value) {
+  return String(value).padStart(2, '0');
+}
+
+function onTick({ hours, minutes, seconds }) {
   clockface.textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+function init() {
+  const time = getTimeComponents(0);
+  onTick(time);
+}
+
+function stop() {
+  clearInterval(intervalId);
+  init();
+  isActive = false;
 }
