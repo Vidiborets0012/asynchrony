@@ -1,0 +1,2 @@
+import"./assets/modulepreload-polyfill-B5Qt9EMX.js";const e=new Promise((o,l)=>{setTimeout(()=>{o("Success! Value passed to resolve function")},2e3)});console.log(e);e.then(o=>console.log(o)).catch(o=>console.log(o)).finally(()=>console.log("Promise settled"));const n=new Promise((o,l)=>{setTimeout(()=>{o(5)},2e3)});n.then(o=>(console.log(o),o*2)).then(o=>(console.log(o),o*3)).then(o=>{console.log(o)}).catch(o=>{console.log(o)}).finally(()=>{console.log("finally")});
+//# sourceMappingURL=promises.js.map
