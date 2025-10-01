@@ -1,0 +1,2 @@
+import"./assets/modulepreload-polyfill-B5Qt9EMX.js";const s=new Promise((o,e)=>{console.log("Починаємо асинхронну операцію..."),setTimeout(()=>{o("Дані завантажено успішно!")},2e3)});console.log("myFirstPromise:",s);new Promise((o,e)=>{setTimeout(()=>{o("Успіх!")},1e3)});console.log("*******************");function t({ms:o}){return new Promise(e=>{setTimeout(e,o)})}console.log("Початок очікування 1.5 секунди...");t({ms:1500}).then(()=>{console.log("⏰ 1.5 секунди минуло. Проміс виконано!")});
+//# sourceMappingURL=promises_1.js.map
