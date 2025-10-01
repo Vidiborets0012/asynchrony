@@ -1,0 +1,2 @@
+import"./assets/modulepreload-polyfill-B5Qt9EMX.js";console.log("***************");console.log("******************");const e=({value:o,delay:l,shouldResolve:s=!0})=>new Promise((c,n)=>{setTimeout(()=>{s?c(o):n(o)},l)});e({value:"A",delay:1e3}).then(o=>console.log(o)).catch(o=>console.log(o));e({value:"B",delay:3e3}).then(o=>console.log(o)).catch(o=>console.log(o));e({value:"C",delay:2e3,shouldResolve:!1}).then(o=>console.log(o)).catch(o=>console.log(o));
+//# sourceMappingURL=promisification.js.map
