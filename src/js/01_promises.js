@@ -134,3 +134,59 @@ console.log('*****************');
 // //step 4
 // //step 2
 // //step 5
+
+console.log('*****************');
+
+// setTimeout(() => {
+//   console.log('step 1');
+// }, 0);
+
+// new Promise(resolve => {
+//   resolve('step 2');
+// }).then(data => {
+//   console.log(data);
+//   setTimeout(() => {
+//     console.log('step 3');
+//   }, 0);
+// });
+
+// setTimeout(() => {
+//   console.log('step 4');
+// }, 0);
+
+// // //step 2
+// // //step 1
+// // //step 4
+// // //step 3
+
+console.log('*****************');
+
+// setTimeout(() => {
+//   console.log('step 1');
+// }, 0);
+
+// setTimeout(() => {
+//   console.log('step 2');
+
+//   new Promise(resolve => {
+//     resolve('step 3');
+//   }).then(data => {
+//     console.log(data);
+//   });
+// }, 0);
+
+// new Promise(resolve => {
+//   resolve('step 4');
+// }).then(data => {
+//   console.log(data);
+// });
+
+// setTimeout(() => {
+//   console.log('step 5');
+// }, 0);
+
+// //step 4
+// //step 1
+// //step 2
+// //step 3
+// //step 5
